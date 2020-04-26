@@ -1,0 +1,66 @@
+.row{
+
+     @mixin atMedium{
+        &--flex-from-medium{
+            display: flex;
+            flex-wrap:wrap;
+         }
+
+        &--equal-height-from-medium{
+            &>div{
+               display: flex;
+            }
+       }
+
+        &--gutters-40px-at-medium{
+            margin-right: -40px;
+
+            &>div{
+                padding-right: 40px;
+            }
+        }
+     }
+
+     @mixin atLarge{
+        &--flex-from-large{
+            display: flex;
+            flex-wrap:wrap;
+         }
+     }
+
+     &__col{
+         width: 100%;
+
+         @mixin atMedium {
+            &--medium-6{
+                width: 50%;
+            }
+         }
+
+         @mixin atLarge {
+
+            &--large-3{
+                width: 25%;
+            }
+
+            &--large-4{
+                width: 33%;
+            }
+
+            &--large-5{
+                width: 41.66%;
+            }
+
+            &--large-7{
+                width: 58.33%;
+            }
+
+         }
+
+         @mixin atExtraLarge {
+            &--extraLarge-3{
+                width: 25%;
+            }
+         }
+     }
+}

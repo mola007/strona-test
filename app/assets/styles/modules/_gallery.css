@@ -1,0 +1,67 @@
+.gallery{
+    &__grid{
+        @mixin atMedium{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-auto-rows: 150px;
+            grid-gap: 8px;
+            grid-auto-flow: dense;
+        }
+    }
+
+    .no-cssgrid &__grid{
+        @mixin atMedium{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;          
+        }
+     }
+
+     .no-cssgrid &__img{
+        @mixin atMedium{
+            margin: 4px;
+            height: 250px;
+            &--long{
+                width: calc((100% / 7) - 8px);
+                
+            }
+            &--wide{
+                width: calc(((100% / 7)*2) - 8px);
+                
+            }
+        }
+     }
+
+
+    &__img{
+        margin-bottom: 1.5rem; 
+
+         @mixin atMedium{
+            margin-bottom: 0;
+            cursor: pointer;
+            transition: opacity .1s ease-out;
+
+           &:hover{
+               opacity: .5;
+           } 
+        }
+
+         &--long{
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+          
+        
+        &--wide{
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+    }
+
+
+     img{
+         width: 100%;
+         height:100%;
+         display: block;
+     }
+}

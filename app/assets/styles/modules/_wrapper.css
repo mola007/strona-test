@@ -1,0 +1,26 @@
+.wrapper{
+    margin: 0 auto;
+
+
+    padding: 0 1.5rem;
+
+
+    &--more-padding-at-top-large{
+        @mixin atLarge{
+            padding-top: 3.125rem; 
+        }    
+    }
+
+    &--more-padding-at-bottom-large{
+        @mixin atLarge{
+            padding-bottom: 3.125rem; 
+        } 
+    } 
+
+    &--width-1200-large{
+        @mixin atLarge{
+        /* padding: 0; */
+        max-width: calc(1200px + 3rem);    
+        }
+    }   
+}

@@ -1,13 +1,192 @@
+
 <!DOCTYPE html>
-<html>
+<html lang = "pl">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
-  <title>Strona Test</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <title>Dolce&Salato Restaurant</title>
+  <meta name="keywords" content="restauracja, dobre jedzenie, pizza, pizzeria">
+  <meta name="description" content="Nasza pizzeria to miejsce, gdzie można zjeść nie tylko smaczne jedzenie ale miło spędzić czas. Nasza pizza jesst wypiekana na bazie dobrych składników co zapewnia jest wspaniały smak.">
+
+  <!-- <script src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script> -->
+ 
 </head>
 <body>
-to jest test
+  <header class = "header" id = "top"> 
+    <div class = "header__contact-social">
+      <div class = "header__contact">
+        Tel: <span>999999999</span> | Email: <span>email@email.com</span>
+      </div>
+      <div class = "header__social">
+        <a class = "header__social-link" href = ""><i class="fab fa-facebook-square"></i></a>
+        <a class = "header__social-link" href = ""><i class="fab fa-twitter-square"></i></a>
+        <a class = "header__social-link" href = ""><i class="fab fa-youtube-square"></i></a>
+      </div>
+    </div>
+
+      <nav class = "header__nav">
+      <ul class = "header__nav-list">
+        <li class = "header__nav-list-item"><a class = "header__nav-list-link header__nav-list-link--current" href = "index.html">START</a></li>
+        <li class = "header__nav-list-item"><a class = "header__nav-list-link" href = "menu.html" id = "menu">MENU</a></li>
+        <li class = "header__nav-list-item"><a class = "header__nav-list-link" href = "gallery.html" id = "gallery">GALERIA</a></li>
+        <li class = "header__nav-list-item"><a class = "header__nav-list-link header__nav-list-link--contact" href = "#contact">KONTAKT</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class = "banner">
+    <div class = "banner__photo-container">
+      <div class = "banner__photo-wrapper">
+        <div class = "banner__photo">
+          <img class = "banner__img lazyload"
+          alt = "pizza-pizzeria-dolce&salato"
+          data-src = "assets/images/pizza-pizzeria-dolce&salato-768.jpg"
+          data-srcset = "assets/images/pizza-pizzeria-dolce&salato-500.jpg 500w, assets/images/pizza-pizzeria-dolce&salato-1000.jpg 1000w, assets/images/pizza-pizzeria-dolce&salato-768.jpg 768w, assets/images/pizza-pizzeria-dolce&salato-1536.jpg 1536w, assets/images/pizza-pizzeria-dolce&salato-1200.jpg 1200w, assets/images/pizza-pizzeria-dolce&salato-2400.jpg 2400w,assets/images/pizza-pizzeria-dolce&salato-1470.jpg 1470w, assets/images/pizza-pizzeria-dolce&salato-2940.jpg 2940w" 
+          sizes="(min-width: 1200px) 1470px, 100vw"   
+          />
+        </div>
+        <h1 class = "banner__photo-txt">Pizzeria Dolce&Salato</h1>
+      </div>
+    </div>
+    <div class = "banner__about">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur site-section.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+      </p>
+    </div>
+  </div>
+ 
+  <main>
+    <section class = "choice">
+      <div class = "site-section">
+        <div class = "wrapper wrapper--width-1200-large">
+          <h2 class = "headline headline--font-32px headline--margin-top-0 headline--align">Dlaczego warto nas wybrać?</h2>
+          <div class = "choice__cards">
+            <div class = "choice__card">
+              <div class = "choice__img-wrapper">
+                <div class = "choice__card-img">
+                  <img class = "lazyload" sizes = "160px" data-src = "assets/images/dobre-jedzenie.jpg" data-srcset="assets/images/dobre-jedzenie.jpg 160w, assets/images/dobre-jedzenie-hi-dpi.jpg 320w" alt = "dobre jedzenie"/>
+                </div>
+              </div>
+              <div class = "choice__indicator">
+                <span aria-hidden="true"></span>
+              </div>
+              <div class = "choice__card-txt">
+                <h3 class = "headline headline--font-24px headline--margin-top-0-from-large headline--align">Smaczne jedzenie</h3>
+                <p class = "choice__card-par">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class = "choice__card">
+              <div class = "choice__img-wrapper">
+                <div class = "choice__card-img">
+                  <img class = "lazyload" sizes = "160px" data-src = "assets/images/mila-atmosfera.jpg" data-srcset="assets/images/mila-atmosfera.jpg 160w, assets/images/mila-atmosfera-hi-dpi.jpg 320w" alt = "miła atmosfera"/>
+                </div>
+              </div>
+              <div class = "choice__indicator">
+                <span aria-hidden="true"></span>
+              </div>
+              <div class = "choice__card-txt">
+                <h3 class = "headline headline--font-24px headline--margin-top-0-from-large headline--align">Przyjazna atmosfera</h3>
+                <p class = "choice__card-par">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class = "choice__card">
+              <div class = "choice__img-wrapper">
+                <div class = "choice__card-img">
+                  <img class = "lazyload" sizes = "160px" data-src = "assets/images/dobra-cena.jpg" data-srcset="assets/images/dobra-cena.jpg 160w, assets/images/dobra-cena-hi-dpi.jpg 320w" alt = "dobra cena"/>
+                </div>
+              </div>
+              <div class = "choice__indicator">
+                <span aria-hidden="true"></span>
+              </div>
+              <div class = "choice__card-txt">
+                <h3 class = "headline headline--font-24px headline--margin-top-0-from-large headline--align">Przystępna cena</h3>
+                <p class = "choice__card-par">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class = "testimonies-contact-bg-image lazyload">
+    <div class = "site-section">
+      <div class = "testimonies">
+        <div class = "owl-carousel owl-theme">
+          <div class = "testimonies__card">
+            <h3 class = "testimonies__card-headline">ZAWSZE SMACZNIE</h3>
+            <div class = "testimonies__card-comment">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <span>~Alina~</span>
+            </div>
+          </div>
+          <div class = "testimonies__card">
+            <h3 class = "testimonies__card-headline">SMACZNIE i NIEDROGO</h3>
+              <div class = "testimonies__card-comment">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
+                <span>~Monika~</span>
+              </div>
+          </div>
+          <div class = "testimonies__card">
+            <h3 class = "testimonies__card-headline">WARTO ODWIEDZIĆ</h3>
+            <div class = "testimonies__card-comment">
+              <p>Lorem ipsum dolor sit amet, consectetur. Ut enim ad minim veniam.</p>
+              <span>~Tomasz~</span>
+            </div>
+          </div>
+          <div class = "testimonies__card">
+            <h3 class = "testimonies__card-headline">BARDZO DOBRA PIZZA</h3>
+            <div class = "testimonies__card-comment">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <span>~Karolina~</span>
+            </div>
+          </div>
+          <div class = "testimonies__card testimonies__card--last">
+            <h3 class = "testimonies__card-headline">JESZCZE TU WRÓCIMY</h3>
+            <div class = "testimonies__card-comment">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              <span>~Jan~</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact section -->
+    <footer class = "contact" id = "contact">
+      <div class = "site-section">
+        <div class = "wrapper wrapper--width-1200-large">
+          <div class="row row--flex-from-large">
+            <div class="row__col row__col--large-5">
+              <h2 class = " contact__headline">Pizzeria <span>Dolce&Salato</span></h2>
+              <div class = "contact__widgets-wrapper">
+                <div class = "contact__widget">
+                  <h3 class = "headline headline--margin-top-0 headline--black headline--margin-bottom-0">Adres</h3>
+                  <span>ul. Sikorskiego 5, </span> 37-450 Stalowa Wola
+                </div>
+                <div class = "contact__widget">
+                  <h3 class = "headline headline--margin-bottom-0 headline--black">Kontakt</h3>
+                  Tel: <span>999999999</span> | Email:  <span>email@email.com</span>
+                </div>
+                <div class = "contact__widget">
+                  <h3 class = "headline headline--margin-bottom-0 headline--black">Godziny otwarcia</h3>
+                  poniedziałek - piątek 10:00 - 23:00 <br>
+                  sobota, niedziela - 12:00 - 22:00
+                </div>
+              </div>
+            </div>
+            <div class="row__col row__col--large-7">
+              <div class = "contact__map-wrapper">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2533.1432573754046!2d22.03776611562115!3d50.58729057949438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d2d2d33f8dc4d%3A0x7321ec6e71b58e06!2sW%C5%82adys%C5%82awa%20Sikorskiego%205%2C%2037-450%20Stalowa%20Wola!5e0!3m2!1spl!2spl!4v1576510989824!5m2!1spl!2spl" width="" height="" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+              </div>
+            </div>
+          </div> 
+          <span class = "contact__copyright-widget">2020 <i class="far fa-copyright"></i> nextWeb</span>
+        </div>
+      </div>
+      <a href="#top" class="top-scroll"><i class="fas fa-arrow-up"></i></a>
+    </footer>
+  </div>
+
+<script src = "bundled.js"></script>
 </body>
 </html>

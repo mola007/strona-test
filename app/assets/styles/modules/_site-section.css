@@ -1,0 +1,8 @@
+.site-section{
+    padding: 1.5rem 0;
+
+    @mixin atLarge{
+        padding: 3.125rem 0; 
+    }
+
+}

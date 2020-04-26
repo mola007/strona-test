@@ -1,0 +1,214 @@
+.testimonies-contact-bg-image.lazyloaded{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('../../assets/images/restaurant-500.jpg');
+    background-image:
+        image-set(
+        url('../../assets/images/restaurant-500.jpg') 1x,
+        url('../../assets/images/restaurant-1000.jpg') 2x
+        );
+    
+
+    @mixin atSmall{
+        background-image: url('../../assets/images/restaurant-768.jpg');
+        background-image:
+            image-set(
+            url('../../assets/images/restaurant-768.jpg') 1x,
+            url('../../assets/images/restaurant-1536.jpg') 2x
+            );
+    }
+
+    @mixin atMedium{
+        background-image: url('../../assets/images/restaurant-1200.jpg');
+        background-image:
+            image-set(
+            url('../../assets/images/restaurant-1200.jpg') 1x,
+            url('../../assets/images/restaurant-2400.jpg') 2x
+            );
+    }
+
+    @mixin atExtraLarge{
+        background-image: url('../../assets/images/restaurant-1920.jpg');
+        background-image:
+            image-set(
+            url('../../assets/images/restaurant-1920.jpg') 1x,
+            url('../../assets/images/restaurant-3840.jpg') 2x
+            );
+    }
+}
+
+ .testimonies{
+ 
+
+    @mixin largerScreens{
+        max-width: 1600px;
+        margin: 0 auto;
+       }
+
+   &__card{
+       padding: 1rem;
+       text-align: center;
+       display: flex;
+       flex-direction: column;
+       height: 100%;
+       p{
+           font-style: italic;
+           margin-top: 0;
+       }
+
+   }
+
+    &__card-comment{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+      &__card-headline{
+        font-weight: 400;
+      }
+}
+
+
+
+.owl-item:not(.center){
+    color: rgba(255,255,255,.3);
+    background-color: rgba(0,0,0,.95);
+}
+
+.owl-item.center{
+    background-color: #000;
+    color: rgba(255,255,255,.8);
+    z-index: 10;
+}
+
+.owl-item.center .testimonies__card-headline{
+     position: relative;
+    &:before{
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 3px;
+        background: $yellow;
+        left: 50%;
+        transform: translate(-50%, -300%);
+    }
+}
+
+.owl-item.center:after{
+    @mixin atMedium{
+        content: "";
+        border: 10px solid #fff;
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+    }
+}
+
+.owl-stage-outer{
+    @mixin atMedium{
+        padding: 10px 0;
+    }
+}
+
+/* taka sama wysokość dla wszystkich cards */
+.owl-carousel .owl-stage {
+    display: flex;
+  }
+
+/* footer */
+.contact{
+    position: relative;
+    background-color: rgba($yellow, .8);
+    line-height: 1.4;
+    font-size: 1.2rem;
+    color: rgba(0,0,0,.8);
+
+    &__widgets-wrapper{
+        padding: 0 0 1.5rem 0;
+        @mixin atMedium{
+            text-align: center;
+        }
+        @mixin atLarge{
+            text-align: left;
+            padding: 0 1.5rem 0 0;
+        }
+    }
+    &__headline{
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.75rem;
+        color: rgba(255,255,255,.9);
+
+        @mixin atMedium{
+            text-align: center;
+        }
+        @mixin atLarge{
+            text-align:left;
+        }
+        span{
+            color: #000;
+        }
+    }
+
+    &__map-wrapper{
+        border-top: 1px solid #fae503;
+        margin: 0 -1.5rem -1.5rem -1.5rem;
+        iframe{
+            width: 100%;
+            display: block;
+            height: 300px;
+            }
+
+         @mixin atLarge{
+            border: 1px solid #fae503;
+            margin: auto;
+        }
+     }
+
+     &__copyright-widget{
+         display: inline-block;
+         padding-top: 1.5rem;
+         padding: .5rem 1rem;
+         border: 1px solid #fff;
+         background:  #000;
+         color: #fff;
+         font-size: 12px;
+         position: relative;
+         z-index: 10;
+     
+     }
+}
+
+.top-scroll svg.svg-inline--fa {
+    color: #fff;
+  }
+
+  a.top-scroll {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    position: absolute;
+    opacity: .5;
+    z-index: 50;
+    background: rgba(0,0,0,.7);
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    line-height: 35px;
+    text-align: center;
+    display: none;
+
+    @mixin atExtraLarge{
+        display: block;
+    }
+
+  }
+
+  a.top-scroll:hover {
+    opacity: .7;
+  }

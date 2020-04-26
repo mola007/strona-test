@@ -1,0 +1,32 @@
+html {
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+html, body {
+    border: 5px solid pink;
+    overflow-x:hidden; 
+    font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
+    }
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.body-no-scroll{ 
+  @mixin atMedium{
+    overflow: hidden;    
+  } 
+}
+
+
