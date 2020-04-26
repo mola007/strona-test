@@ -19,7 +19,6 @@
 
     &--width-1200-large{
         @mixin atLarge{
-        /* padding: 0; */
         max-width: calc(1200px + 3rem);    
         }
     }   

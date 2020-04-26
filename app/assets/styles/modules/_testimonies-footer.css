@@ -1,40 +1,42 @@
+
+
 .testimonies-contact-bg-image.lazyloaded{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    background-image: url('../../assets/images/restaurant-500.jpg');
-    background-image:
+    background-image: url('assets/images/restaurant-500.jpg');
+      background-image:
         image-set(
-        url('../../assets/images/restaurant-500.jpg') 1x,
-        url('../../assets/images/restaurant-1000.jpg') 2x
+        url('assets/images/restaurant-500.jpg') 1x,
+        url('assets/images/restaurant-1000.jpg') 2x
         );
     
 
-    @mixin atSmall{
-        background-image: url('../../assets/images/restaurant-768.jpg');
+ @mixin atSmall{
+        background-image: url('assets/images/restaurant-768.jpg');
         background-image:
             image-set(
-            url('../../assets/images/restaurant-768.jpg') 1x,
-            url('../../assets/images/restaurant-1536.jpg') 2x
+            url('assets/images/restaurant-768.jpg') 1x,
+            url('assets/images/restaurant-1536.jpg') 2x
             );
     }
 
     @mixin atMedium{
-        background-image: url('../../assets/images/restaurant-1200.jpg');
+        background-image: url('assets/images/restaurant-1200.jpg');
         background-image:
             image-set(
-            url('../../assets/images/restaurant-1200.jpg') 1x,
-            url('../../assets/images/restaurant-2400.jpg') 2x
+            url('assets/images/restaurant-1200.jpg') 1x,
+            url('assets/images/restaurant-2400.jpg') 2x
             );
     }
 
     @mixin atExtraLarge{
-        background-image: url('../../assets/images/restaurant-1920.jpg');
+        background-image: url('assets/images/restaurant-1920.jpg');
         background-image:
             image-set(
-            url('../../assets/images/restaurant-1920.jpg') 1x,
-            url('../../assets/images/restaurant-3840.jpg') 2x
+            url('assets/images/restaurant-1920.jpg') 1x,
+            url('assets/images/restaurant-3840.jpg') 2x
             );
     }
 }

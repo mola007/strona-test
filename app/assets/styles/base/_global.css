@@ -7,7 +7,6 @@ html {
   }
 
 html, body {
-    border: 5px solid pink;
     overflow-x:hidden; 
     font-family: 'Lato', sans-serif;
     scroll-behavior: smooth;

@@ -1,6 +1,5 @@
 .header{
 
-
     @mixin atExtraLarge{
         display: flex;
         position: absolute;
