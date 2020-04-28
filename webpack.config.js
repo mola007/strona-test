@@ -30,7 +30,29 @@
 //W package.json zmieniam komendę we właściwości dev z webpack na webpack-dev-server. Komenda zostaje ta sama npm run dev.
 //w pliku głównym js - App.js zapisuje warunek if(module.hot){ module.hot.accept();} Jeżeli module.hot jest ustawione na true to wywołaj zmiany.
 
+/*CODE SPLITING WITH WEBPACK*/
+//stosuje się w sytuacji kiedy nie chcę aby cały plik js był od razu ściągnięty. Chodzi o perfomance, mam np. modal, którego kod js nie musi być od razu pobrany po załadowaniu się strony. Kod js ma być pobrany dopiero po kliknięciu na dany btn. W App.js rozpisuje:
+/////////////////////////////////////////////////////////////////////////////////////
+//let modalGallery
+/* pobierz kod js dopiero po kliknięciu na dany thumbnail */
 
+// document.querySelectorAll(".gallery__img").forEach(el => {
+//     el.addEventListener("click", (e) => {   
+//       if(typeof modalGallery == "undefined") {
+            /*metoda import() zwraca promise stąd then() i catch(), x w then to dane, jakie zostaną pobrane z modułu, webpackChunkName - w ten sposób mogę zmienić nazwę pliku js, który jest pobierany z bundled.js na modal.bondled.js jak tutaj, aby ta nazwa była widoczna w zakładce pobieranych plików - network, muszę na nowo odświeżyć webpacka, npm run dev */
+//         import(/*webpackChunkName: "modal"*/ "./modules/ModalGallery").then( x => {
+                /*przypisuję globalnie do zmiennej nową instance klasy*/
+//             modalGallery = new x.default()
+                /*wywołuje funkcję open modal*/
+//             setTimeout(() => modalGallery.openTheModal(e), 20)
+//         }).catch(() => console.log('There was a problem with modal oppening'))
+//       } else{
+            /*jeżeli użytkownik otworzył modal i zamknął. Jeżeli otworzy go ponownie nie ściągaj danych na nowo ale otwórz te które są już w pamięci*/
+//         modalGallery.openTheModal(e)
+//       }
+//     })
+// })
+// Jeżeli zapiszę zdarzenie w ten sposób nie będę go dłużej potrzebowała w samym modalGallery.js, usuwam zdarzenie z modułu, zostawiam tylko metodę, którą potrzebuję, tutaj modalGallery.openTheModal(e), modalGallery to nazwa zmiennej zapisana wyżej
 
 const path = require("path");
 
