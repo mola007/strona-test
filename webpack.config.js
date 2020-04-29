@@ -54,12 +54,13 @@
 // })
 // Jeżeli zapiszę zdarzenie w ten sposób nie będę go dłużej potrzebowała w samym modalGallery.js, usuwam zdarzenie z modułu, zostawiam tylko metodę, którą potrzebuję, tutaj modalGallery.openTheModal(e), modalGallery to nazwa zmiennej zapisana wyżej
 
-const path = require("path");
+const webpack = require('webpack')
+const path = require("path")
 
 const postCSSPlugins = [
     require("postcss-import"),
-    require("postcss-mixins"),
     require("postcss-simple-vars"),
+    require("postcss-mixins"),
     require("postcss-nested"),
     require("autoprefixer")
 
@@ -88,5 +89,12 @@ module.exports = {
                 use: ["style-loader", "css-loader?url=false", {loader: "postcss-loader", options: {plugins: postCSSPlugins}}]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        }),
+    ]
 }

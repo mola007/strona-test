@@ -1,11 +1,11 @@
-import $ from 'jquery';
-import 'owl.carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css'
+import $ from 'jquery'
+import 'owl.carousel'
 
 class OwlSlider{
 
     constructor(){  
 
-        console.log('owl wszystko, a teraz?');
       
         $('.owl-carousel').owlCarousel({
             center: true,      

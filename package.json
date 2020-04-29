@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/mola007/strona-test#readme",
   "dependencies": {
+    "jquery": "^3.5.0",
+    "lazysizes": "^5.2.0",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1"
   },
