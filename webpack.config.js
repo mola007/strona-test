@@ -190,6 +190,7 @@ module.exports = config
 // })
 
 /*GOING LIVE*/
+//Jeżeli chcę wprowadzić zmiany na stronie, która już jest na serwerze najpierw  robię zmiany, zapisuję, npm run build, git add -A, git commit -m "changes", git push origin master
 
 
 
