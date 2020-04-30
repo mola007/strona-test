@@ -1,6 +1,8 @@
-import 'owl.carousel/dist/assets/owl.carousel.css'
-import $ from 'jquery'
-import 'owl.carousel'
+// import $ from 'jquery'
+// import 'owl.carousel/dist/assets/owl.carousel.css'
+// import 'owl.carousel'
+
+
 
 class OwlSlider{
 

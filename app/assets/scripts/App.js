@@ -1,5 +1,7 @@
 import "lazysizes"
+
 import "../styles/styles.css"
+
 import Preloader from './modules/Preloader'
 
 
@@ -7,11 +9,11 @@ new Preloader()
 let modalGallery, menu
 
 
-if(document.querySelector(".owl-carousel")){
-  import(/*webpackChunkName: "owl_slider"*/'./modules/OwlSlider').then(x => {
+/*if(document.querySelector(".owl-carousel")){
+  import('./modules/OwlSlider').then(x => {
     new x.default()
   }).catch(() => console.log('modal not found'))
-}
+}*/
 
 document.querySelectorAll(".menu__tab-btn").forEach(btn => {
   btn.addEventListener("click", (e) => {  

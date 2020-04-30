@@ -54,8 +54,14 @@
 // })
 // Jeżeli zapiszę zdarzenie w ten sposób nie będę go dłużej potrzebowała w samym modalGallery.js, usuwam zdarzenie z modułu, zostawiam tylko metodę, którą potrzebuję, tutaj modalGallery.openTheModal(e), modalGallery to nazwa zmiennej zapisana wyżej
 
+
 const webpack = require('webpack')
+const currentTask = process.env.npm_lifecycle_event
 const path = require("path")
+const {CleanWebpackPlugin} = require("clean-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const fse = require("fs-extra")
 
 const postCSSPlugins = [
     require("postcss-import"),
@@ -63,16 +69,51 @@ const postCSSPlugins = [
     require("postcss-mixins"),
     require("postcss-nested"),
     require("autoprefixer")
-
 ]
 
-module.exports = {
+// kopiowanie zdjęć
+class RunAfterCompile {
+    apply(compiler) {
+        compiler.hooks.done.tap("copy images", function(){
+            fse.copySync("./app/assets/images", "./docs/assets/images")
+        })
+    }
+}
+
+let cssConfig =  {
+    test: /\.css$/i,
+    use: ["css-loader?url=false", {loader: "postcss-loader", options: {plugins: postCSSPlugins}}]
+}
+
+// zwróci tabilcę plików w koncówką html
+let pages = fse.readdirSync("./app").filter(function(file){
+    return file.endsWith(".html")
+}).map(function(page){
+    return new HtmlWebpackPlugin({
+        filename: page,
+        template: `./app/${page}`
+    })
+})
+
+let config = {
     entry: "./app/assets/scripts/App.js",
-    output: {
+    plugins: pages,
+    //tak wygląda zapis jeżeli mam jedną stronę
+    //plugins: [new HtmlWebpackPlugin({filename: "index.html", template: "./app/index.html"})],
+    module: {
+        rules: [
+           cssConfig 
+        ]
+    }
+}
+
+if(currentTask == "dev"){
+    cssConfig.use.unshift("style-loader")
+    config.output = {
         filename: "bundled.js",
         path: path.resolve(__dirname, "app")
-    },
-    devServer: {
+    }
+    config.devServer = {
         before: function(app, server){
             server._watch("./app/**/*.html");
         },
@@ -80,21 +121,78 @@ module.exports = {
         hot: true,
         port: 3000,
         host: "0.0.0.0"
-    },
-    mode: "development",
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: ["style-loader", "css-loader?url=false", {loader: "postcss-loader", options: {plugins: postCSSPlugins}}]
-            }
-        ]
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-          $: 'jquery',
-          jQuery: 'jquery',
-          'window.jQuery': 'jquery'
-        }),
-    ]
+    }
+    config.mode = "development"
+
 }
+
+if(currentTask == "build"){
+    //chcę aby rules dotyczyło tylko js files, exclude - co ma być wykluczone
+    config.module.rules.push({
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ["@babel/preset-env"]
+            }
+        }
+    })
+    cssConfig.use.unshift(MiniCssExtractPlugin.loader)
+    postCSSPlugins.push(require("cssnano"))
+    config.output = {
+        filename: "[name].[chunkhash].js",
+        chunkFilename: "[name].[chunkhash].js",
+        path: path.resolve(__dirname, "docs")
+    }
+    config.mode = "production"
+    config.optimization = {
+        splitChunks: {chunks: "all"}
+    }
+    config.plugins.push(
+        new CleanWebpackPlugin(), 
+        new MiniCssExtractPlugin({filename: "styles.[chunkhash].css"}), 
+        new RunAfterCompile()
+        )
+   
+    
+    
+}
+
+
+module.exports = config
+
+/* BUILDING AND DEPLOYMENT */
+//package.json - w obiekcie scripts dodaje property: "build": "webpack", komenda będzie się wykonywała raz.
+//powyżej dodaje zmienną - const currentTask = process.env.npm_lifecycle_event, ten zapis sprawi że będzie wiadomo, który task odbywa się w tym momencie: dev czy build.
+// wszystkie ustawienia, które miałam wcześniej w module.config rodzielam na te dotyczące taska build (deploymant) i dev(development), w obiekcie config zapisuje ustawienia, które będą wspólne dla obu tasków. W zależności od warunku: currentTask == "dev" czy currentTask == "build" rozpisuje ustawienia, którego będę dotyczyć tylko określonego taska.
+//chcę aby kod js został podzielony na części, tym samym jeżeli np. zmienię coś w modal. Na nowo zostanie ściągnięty tylko modal.js a nie cały kod js. Reszta zapisze się w pamięci catche dzięki czemu kod będzie się wczytywał szybciej. Aby to ustawić do warunku, gdzie jest build dodaje:    config.optimization = {
+    //     splitChunks: {chunks: "all"}
+    // }, w config.output zapisuję zaś ustawienia dotyczące nazw poszczególnych części js, teraz będą się one naz. tak jak nazwy klas a nie np. bundled.js
+// chcę aby po dokonaniu zmian w js wszystko co się znajduje w dist było na nowo wymieniane. Instaluje clean-webpack-plugin - npm install clean-webpack-plugin --save-dev i zapisuję zmienną powyżej - const {CleanWebpackPlugin} = require("clean-webpack-plugin"), w current task == "build" zapisuje również config.plugins = [new CleanWebpackPlugin()]
+//w pliku głównego main w folderze dist chcę wyodrębnić pliks css strony. Zaczynam od zainstalowania mini-css-extract-plugin: npm install mini-css-extract-plugin --save-dev, zapisuję zmienną powyżej - const MiniCssExtractPlugin = require("mini-css-extract-plugin"), do config.plugins dodaje: , new MiniCssExtractPlugin({filemane: "styles.[chunkhash].css"}, Po wywołaniu komendy npm run build w dist wyodrębni się oddzielny plik css main. Teraz chcę ten plik zmniejszyć/skompresować. Instaluje css nano - npm install cssnano --save-dev.Chcę aby ten pakiet uruchamiał się w tasku build dlatego dodaje
+//postCSSPlugins.push(require("cssnano")). postCSSPlugins to wtyczki postCSS, które zainstalowałam wcześniej teraz dodaje do nich cssnano.
+//W ccsCongif -> use usuwam style-loader. W przypadku taska dev jest mi on potrzebny dlatego dodaje na początku tablicy go - cssConfig.use.unshift("style-loader"). W przypadku taska build potrzebuje pakietu z MiniCssExtractPlugin. Również dodaje go na początek tablicy - cssConfig.use.unshift(MiniCssExtractPlugin.loader)
+
+/*PODPIĘCIE WYGENEROWANYCH PLIKÓW JS, CSS DO HTML*/
+//W przypadku html, podpięcie pliku bundled js nie będzie dłużej działało. Ponieważ pliki w dist mają różne nazwy a nie bundled js. Zaczynam od zainstalowania: npm install html-webpack-plugin --save-dev. Na górze rozpisuję zmienną const HtmlWebpackPlugin = require("html-webpack-plugin"). W obiekcie wspólnym connfig zapisuję     plugins: [new HtmlWebpackPlugin({filename: "index.html", template: "./app/index.html"})],
+//jeżeli mam więcej stron html. Zaczynam od zainstalowania: npm install fs-extra --save-dev, zapisuję również wyżej: const fse = require("fs-extra"). Rozpisuję zmienną pages jak wyżej i wstawiam ją w config -> plugins
+
+// jeżeli mam więcej niż 10 stron potrzebuję static site generator
+
+/*KOPIOWANIE ZDJĘĆ DO DIST*/
+//rozpisuje klasę i zapisuję jej instance(wywołuję ją) w ustawieniach build.
+
+/*ABY KOD JS DZIAŁAŁ RÓWNIEŻ W STARSZYCH PRZEGLĄDARKACH*/
+//Zaczynam od zainstalowania: npm install @babel/core @babel/preset-env babel-loader --save-dev, 
+//  w ustawieniach build zapisuję: config.module.rules.push({
+//     test: /\.js$/
+// })
+
+/*GOING LIVE*/
+
+
+
+
+//! po każdej zmianie w webpack.config potrzebuję na nowo run task
+   
